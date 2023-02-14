@@ -57,7 +57,7 @@
 <script>
 // importing Dependencies
 import axios from "axios";
-// import { logIn } from "../Services/UserService";
+import { logIn } from "@/services/services";
 export default {
   // Data
   name: "Login",
@@ -87,6 +87,10 @@ export default {
       // Api requesting by Post method
       logIn(formData)
         .then((response) => {
+          console.log(
+            "🚀 ~ file: LoginForm.vue:90 ~ .then ~ response",
+            response
+          );
           // storing credentials in variables
           const username = response.data.username;
           const userId = response.data.id;
@@ -96,10 +100,10 @@ export default {
           const lastName = response.data.lastName;
           const fullName = firstName + " " + lastName;
           // Commiting Mutations
-          this.$store.commit({
-            type: "Login/setToken",
-            value: token,
-          });
+          // this.$store.commit({
+          //   type: "Login/setToken",
+          //   value: token,
+          // });
 
           // Setting headers, token and other credentials to local storage
 
@@ -111,11 +115,13 @@ export default {
           localStorage.setItem("fullName", fullName);
 
           // Sending the user to the page from which they came from
-          const toPath = this.$route.query.to || "/cart";
+          const toPath = this.$route.query.to || "/profile-page";
           this.$router.push(toPath);
         })
         // Showing error if failed
         .catch((error) => {
+          console.log("🚀 ~ file: LoginForm.vue:123 ~ logIn ~ error", error);
+
           if (error.response) {
             for (const property in error.response.data) {
               // Getting errors stored in the data if a property was wrong

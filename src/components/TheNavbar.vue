@@ -1,7 +1,9 @@
 <template>
   <div>
     <header>
-      <a class="logo" href="/"><img src="images/logo.svg" alt="logo" /></a>
+      <a class="logo" href="/"
+        ><img src="@/assets/META.svg" alt="logo" height="30rem"
+      /></a>
       <nav>
         <ul class="nav__links">
           <li><a href="#">Services</a></li>
